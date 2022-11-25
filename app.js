@@ -5,6 +5,7 @@ dotenv.config();
 import mongoose from "mongoose";
 import express from "express";
 import Colors from "colors";
+import axios from "axios";
 
 const app = express();
 
@@ -34,7 +35,6 @@ const productSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
-
 const Product = mongoose.model("Product", productSchema);
 
 //static files routes configure (middleware)
