@@ -8,6 +8,7 @@ import Colors from "colors";
 import axios from "axios";
 
 const app = express();
+app.use(express.json());
 
 //constante de entorno
 const PORT = process.env.PORT || 4000;
@@ -20,7 +21,7 @@ mongoose
   .then((result) => {
     console.log(Colors.bgGreen("conexion exitosa a la base de datos"));
     app.listen(PORT, () => {
-      console.log(`servidor escuchando en puerto ${PORT}`);
+      console.log(Colors.rainbow(`servidor escuchando en puerto ${PORT}`));
     });
   })
   .catch((err) => {
@@ -37,12 +38,21 @@ const productSchema = mongoose.Schema(
 );
 const Product = mongoose.model("Product", productSchema);
 
+// const pokeApiURI = "https://pokeapi.co/api/v2/pokemon";
+// app.get("/", async (req, res) => {
+//   try {
+//     const response = await axios(`${pokeApiURI}/charrnder`);
+//     if (response.status === 200) console.log(response.data.name);
+//   } catch (error) {
+//     console.log(error.message);
+//   }
+// });
+
 //static files routes configure (middleware)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use(express.json());
 app.post("/api/v1/products", (req, res) => {
   const newProduct = new Product(req.body);
   newProduct
