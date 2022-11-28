@@ -5,5 +5,5 @@ const productsRouter = Router();
 
 productsRouter.get("/", productsController.getAll);
 productsRouter.post("/", productsController.store);
-
+productsRouter.delete("/:id", productsController.delete);
 export default productsRouter;

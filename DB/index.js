@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Colors from "colors";
 import * as dotenv from "dotenv";
+import { PRODUCT } from "../models/products.js";
 
 //ENVIROMENT CONSTANTS
 dotenv.config();
@@ -17,6 +18,10 @@ export const databaseConnection = (app) => {
       app.listen(PORT, () => {
         console.log(Colors.rainbow(`SERVER PORT LISTENING LISTENING ${PORT}`));
       });
+
+      // PRODUCT.updateMany({}, { $set: { deletedAt: null } }).then((res) =>
+      //   console.log(res)
+      // );
     })
     .catch((err) => {
       console.log(err);

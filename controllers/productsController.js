@@ -7,10 +7,11 @@ const productsController = {
     res.status(200).json({
       ok: "true",
       count: products.length,
-      data: products,
+      products: products,
     });
   },
   store: async (req, res) => {
+    console.log("body:", req.body);
     if (!req.body.name || !req.body.price) {
       res.status(400).json({
         ok: false,
@@ -25,8 +26,26 @@ const productsController = {
 
     return res.status(200).json({
       isStored: true,
-      data: productStored,
+      product: productStored,
       message: "The product has been successfully created",
+    });
+  },
+  delete: async (req, res) => {
+    const { id } = req.params;
+
+    if (!req.params.id) {
+      return res.status(400).json({
+        idDeleted: false,
+        message: "The filed id is required",
+      });
+    }
+    const response = await productsService.delete(id);
+    console.log(response);
+    return res.status(202).json({
+      status: 202,
+      product: response,
+      isDeleted: true,
+      message: "Product deleted successfully",
     });
   },
 };
