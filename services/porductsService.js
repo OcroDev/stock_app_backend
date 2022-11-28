@@ -3,7 +3,7 @@ import { PRODUCT } from "../models/products.js";
 export const productsService = {
   getAll: () => {
     try {
-      return PRODUCT.find();
+      return PRODUCT.find().sort({ _id: -1 });
     } catch (error) {
       return error;
     }
