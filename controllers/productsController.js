@@ -1,4 +1,4 @@
-import { productsService } from "../services/porductsService.js";
+import { productsService } from "../services/productsService.js";
 
 const productsController = {
   getAll: async (req, res) => {
@@ -11,7 +11,6 @@ const productsController = {
     });
   },
   store: async (req, res) => {
-    console.log("body:", req.body);
     if (!req.body.name || !req.body.price) {
       res.status(400).json({
         ok: false,
@@ -24,7 +23,7 @@ const productsController = {
 
     const productStored = await productsService.store(newProduct);
 
-    return res.status(200).json({
+    return res.status(201).json({
       isStored: true,
       product: productStored,
       message: "The product has been successfully created",

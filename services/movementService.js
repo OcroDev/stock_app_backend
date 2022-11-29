@@ -1,23 +1,23 @@
-import { PRODUCT } from "../models/products.js";
+import { MOVEMENT } from "../models/movement.js";
 
-export const productsService = {
+export const movementService = {
   getAll: () => {
     try {
-      return PRODUCT.find({ deletedAt: null }).sort({ _id: -1 });
+      //TODO function to get all movement from database
     } catch (error) {
       return error;
     }
   },
-  store: (newProduct) => {
+  store: (newMovement) => {
     try {
-      return PRODUCT.create(newProduct);
+      return MOVEMENT.create(newMovement);
     } catch (error) {
       return error;
     }
   },
   delete: (id) => {
     try {
-      return PRODUCT.findByIdAndUpdate(
+      return MOVEMENT.findByIdAndUpdate(
         id,
         { deletedAt: new Date() },
         { new: true }

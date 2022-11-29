@@ -2,6 +2,7 @@ import productsRouter from "./routes/products.js";
 import express from "express";
 import Cors from "cors";
 import { databaseConnection } from "./DB/index.js";
+import movementRouter from "./routes/movement.js";
 
 const app = express();
 
@@ -14,3 +15,4 @@ app.use(Cors());
 app.use(express.json());
 
 app.use("/api/v1/products", productsRouter);
+app.use("/api/v1/products/movement", movementRouter);
